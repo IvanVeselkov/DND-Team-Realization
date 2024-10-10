@@ -39,7 +39,16 @@ namespace DnD
 
         public CharacterSheet FindCharacterById(int id)
         {
-            return characters.Find(i => i.Id == id);
+            var character = characters.Find(i => i.Id == id);
+            if (character != null)
+            {
+                return character;
+            }
+            else
+            {
+                Console.WriteLine("Такого персонажа не существует");
+                return null;
+            }
         }
 
         public void AddItem(int id, Inventory item)

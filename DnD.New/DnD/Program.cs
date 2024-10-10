@@ -24,6 +24,7 @@ namespace DnD
                 Console.WriteLine("2. Получить персонажа по id");
                 Console.WriteLine("3. Показать инвентарь персонажа");
                 Console.WriteLine("4. Удалить предмет у персонажа");
+                Console.WriteLine("5. Подготовить лист персонажа в PDF формате");
 
                 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -96,8 +97,6 @@ namespace DnD
                             Console.WriteLine($"{i + 1}. {items[i].ItemName} - {items[i].Description}");
                         }
 
-
-
                         Console.WriteLine("Введите номера предметов через запятую (например, 1,3):");
                         string[] itemChoices = Console.ReadLine().Split(',');
                         var selectedItems = new List<Inventory>();
@@ -118,9 +117,6 @@ namespace DnD
                                 }
                             }
                         }
-
-
-
                         Console.WriteLine($"Персонаж {name} добавлен");
 
                         break;
@@ -176,11 +172,17 @@ namespace DnD
                             Console.WriteLine("Персонаж не найден.");
                         }
                         break;
+                    case 5:
+                        Console.WriteLine("Введите id персонажа");
+                        int idSave = Convert.ToInt32(Console.ReadLine());
+                        WordDocument wordDocument = new WordDocument();
+                        wordDocument.CreatePdfSheet(dnDMethods.FindCharacterById(idSave));
+                        break;
 
 
                 }
 
-               
+
             }
 
         }
